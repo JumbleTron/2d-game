@@ -46,4 +46,13 @@ export class MapTiles extends Tiles
 			],
 		]
 	}
+
+	public isSolid(x:number, y: number): boolean {
+		const column = Math.floor(x / MapTiles.TILE_WIDTH);
+		const row = Math.floor(y / MapTiles.TILE_HEIGHT);
+
+		return this.layers.reduce((res, layer) => {
+			return res || [MapTiles.INDEX_BUSH, MapTiles.INDEX_TREE, MapTiles.INDEX_TREE_END].includes(layer[row][column])
+		}, false)
+	}
 }
