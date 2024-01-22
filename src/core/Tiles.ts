@@ -8,12 +8,17 @@ export abstract class Tiles
 
 	protected src: string = '';
 
+	protected image?: CanvasImageSource;
+
 	public getLayers() {
 		return this.layers;
 	}
 
 	public async getTileImage(): Promise<CanvasImageSource>
 	{
-		return await loadImage(this.src)
+		const image = await loadImage(this.src);
+		this.image = image
+
+		return image
 	}
 }
